@@ -1,0 +1,138 @@
+<div class="main-content">
+  <div class="container">
+    <div class="col-sm-12 ">
+      <div class="form-group">
+        <form [formGroup]="synonymeForm">
+          <div class="col-sm-12 col-md-6 col-xl-4 form-group">
+            <label class="control-label">
+              Hierarchy Code
+            </label>
+            <input [(ngModel)]="synonyme.hierarchy_code"
+                   class="form-control"
+                   formControlName="hierarchyCode"
+                   pInputText
+                   placeholder="hierarchyCode"
+                   type="text">
+          </div>
+          <div class="col-sm-12 col-md-6 col-xl-4 form-group">
+            <label class="control-label">
+              required
+            </label>
+            <input [(ngModel)]="synonyme.required"
+                   class="form-control"
+                   formControlName="required"
+                   pInputText
+                   placeholder="required"
+                   type="text">
+          </div>
+          <div class="col-sm-12 col-md-6 col-xl-4 form-group">
+            <label class="control-label">
+              variant
+            </label>
+            <input [(ngModel)]="synonyme.variant"
+                   class="form-control"
+                   formControlName="variant"
+                   pInputText
+                   placeholder="variant"
+                   type="text">
+          </div>
+          <div class="col-sm-12 col-md-6 col-xl-4 form-group">
+            <label class="control-label">
+              label
+            </label>
+            <input [(ngModel)]="synonyme.label"
+                   class="form-control"
+                   formControlName="label"
+                   pInputText
+                   placeholder="label"
+                   type="text">
+          </div>
+          <div class="col-sm-12 col-md-6 col-xl-4 form-group">
+            <label class="control-label">
+              values
+            </label>
+            <input [(ngModel)]="synonyme.values"
+                   class="form-control"
+                   formControlName="values"
+                   pInputText
+                   placeholder="values"
+                   type="text">
+          </div>
+          <div class="col-sm-12 col-md-6 col-xl-4 form-group">
+            <label class="control-label">
+              requirementLevel
+            </label>
+            <input [(ngModel)]="synonyme.requirement_level"
+                   class="form-control"
+                   formControlName="requirementLevel"
+                   pInputText
+                   placeholder="requirementLevel"
+                   type="text">
+          </div>
+          <div class="col-sm-12 col-md-6 col-xl-4 form-group">
+            <label class="control-label">
+              type
+            </label>
+            <input [(ngModel)]="synonyme.type"
+                   class="form-control"
+                   formControlName="type"
+                   pInputText
+                   placeholder="type"
+                   type="text">
+          </div>
+          <div class="col-sm-12 col-md-6 col-xl-4 form-group">
+            <label class="control-label">
+              example
+            </label>
+            <input [(ngModel)]="synonyme.example"
+                   class="form-control"
+                   formControlName="example"
+                   pInputText
+                   placeholder="example"
+                   type="text">
+          </div>
+          <div class="col-sm-12 col-md-6 col-xl-4 form-group">
+            <label class="control-label">
+              typeParameter
+            </label>
+            <input [(ngModel)]="synonyme.type_parameter"
+                   class="form-control"
+                   formControlName="typeParameter"
+                   pInputText
+                   placeholder="typeParameter"
+                   type="text">
+          </div>
+          <div class="col-sm-12 col-md-6 col-xl-4 form-group">
+            <label class="control-label">
+              description
+            </label>
+            <input [(ngModel)]="synonyme.description"
+                   class="form-control"
+                   formControlName="description"
+                   pInputText
+                   placeholder="description"
+                   type="text">
+          </div>
+          <div class="global-btn row justify-content-center">
+            <div class="col-md-3 d-flex justify-content-center">
+              <button (click)="reinitializeForm()"
+                      class="btn btn-dark my-3"
+                      type="reset">
+                <em aria-hidden="true"
+                    class="fa fa-refresh reload-card">
+                </em> Fermer
+              </button>
+              <button (click)="saveSynonyme()"
+                      class="btn btn-success my-3"
+                      type="submit">
+                <em aria-hidden="true"
+                    class="fa fa-check">
+                </em> {{(data)? 'Modifier': 'Ajouter'}}
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>

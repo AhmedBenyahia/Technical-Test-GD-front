@@ -1,0 +1,183 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Administrateur</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item href="#"><mat-icon mat-list-icon>business</mat-icon>Accueil</a>
+      <a mat-list-item href="#"><mat-icon mat-list-icon>business</mat-icon>Gestion des Fichiers</a>
+      <a mat-list-item href="#"><mat-icon mat-list-icon>business</mat-icon>Toutes les fonctionalite d'enrichissement</a>
+      <a mat-list-item (click)="toggleMenu()">
+        <mat-icon mat-list-icon>business</mat-icon>Paramétrage
+        <mat-icon *ngIf="!showMenu">chevron_right</mat-icon>
+        <mat-icon *ngIf="showMenu">expand_more</mat-icon>
+      </a>
+      <mat-nav-list class="sidenav-submenu" *ngIf="showMenu">
+        <a mat-list-item > <mat-icon mat-list-icon>business</mat-icon> Paramétrage des Attributs</a>
+        <a mat-list-item > <mat-icon mat-list-icon>business</mat-icon> Charger les Listes des valeurs</a>
+        <a mat-list-item routerLink="synonym-attribute"> <mat-icon mat-list-icon>business</mat-icon> Typage des attributs</a>
+        <a mat-list-item > <mat-icon mat-list-icon>business</mat-icon> Rafraichir la base des listes </a>
+      </mat-nav-list>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <span></span>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+<!--<nav class="collapse navbar-collapse justify-content-end" id="mainMenu">-->
+<!--  <ul class="navbar-nav ml-auto">-->
+<!--    <li *ngIf="showMenuHome" [routerLinkActive]="['active']" class="nav-item">-->
+<!--      <a class="nav-link" routerLink="/home">{{'shared.menu.home' | translate}}</a>-->
+<!--    </li>-->
+<!--    <li *ngIf="showMenuContrat" [routerLinkActive]="['active']" class="nav-item dropdown">-->
+<!--      <a aria-expanded="false"-->
+<!--         aria-haspopup="true"-->
+<!--         class="nav-link dropdown-toggle"-->
+<!--         data-toggle="dropdown"-->
+<!--         href="#"-->
+<!--         role="button">-->
+<!--        {{'shared.menu.contractCourtier' | translate}}-->
+<!--      </a>-->
+<!--      <div aria-labelledby="navbarDropdown" class="dropdown-menu">-->
+<!--        <a *ngIf="showMenuSearchPersonne" class="dropdown-item"-->
+<!--           routerLink="/contrat/recherche-personne-physique">-->
+<!--          {{'shared.menu.recherchePersonnePhysique' | translate}}-->
+<!--        </a>-->
+<!--        <a *ngIf="showMenuSearchPersonneMorale" class="dropdown-item"-->
+<!--           routerLink="/contrat/recherche-personne-morale">-->
+<!--          {{'shared.menu.recherchePersonneMorale' | translate}}-->
+<!--        </a>-->
+<!--      </div>-->
+<!--    </li>-->
+
+<!--    <li *ngIf="showMenuCotisation" [routerLinkActive]="['active']" class="nav-item dropdown">-->
+<!--      <a aria-expanded="false"-->
+<!--         aria-haspopup="true"-->
+<!--         class="nav-link dropdown-toggle"-->
+<!--         data-toggle="dropdown"-->
+<!--         href="#"-->
+<!--         role="button">-->
+<!--        {{'shared.menu.cotisationCourtier' | translate}}-->
+<!--      </a>-->
+<!--      <div aria-labelledby="navbarDropdown" class="dropdown-menu">-->
+<!--        <a class="dropdown-item"-->
+<!--           routerLink="/cotisation/recherche-cotisation">-->
+<!--          {{'shared.menu.rechercheCotisation' | translate}}-->
+<!--        </a>-->
+<!--        <a class="dropdown-item"-->
+<!--           routerLink="/cotisation/ajout-cotisation">-->
+<!--          {{'shared.menu.ajoutCotisation' | translate}}-->
+<!--        </a>-->
+<!--      </div>-->
+<!--    </li>-->
+<!--    <li *ngIf="showMenuEncaissement" [routerLinkActive]="['active']" class="nav-item dropdown">-->
+<!--      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"-->
+<!--         aria-haspopup="true" aria-expanded="false">-->
+<!--        {{'shared.menu.encaissementsCourtier' | translate}}-->
+<!--      </a>-->
+<!--      <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+<!--        <a *ngIf="showMenuSearchEncaissement" class="dropdown-item" routerLink="/cotisation/recherche-encaissement">-->
+<!--          {{'shared.menu.rechercheEncaissement' | translate}}-->
+<!--        </a>-->
+<!--        <a *ngIf="showMenuAddEncaissement" class="dropdown-item" routerLink="/cotisation/ajout-encaissement">-->
+<!--          {{'shared.menu.saisieEncaissement' | translate}}-->
+<!--        </a>-->
+<!--      </div>-->
+<!--    </li>-->
+
+<!--    <li *ngIf="showMenuSante" [routerLinkActive]="['active']" class="nav-item dropdown">-->
+<!--      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"-->
+<!--         data-toggle="dropdown"-->
+<!--         aria-haspopup="true" aria-expanded="false">-->
+<!--        {{'shared.menu.health' | translate}}-->
+<!--      </a>-->
+<!--      <span *ngIf="newDecomptesNumber > 0"-->
+<!--            class="demande-number badge badge-pill badge-success notif-badge">{{newDecomptesNumber}}</span>-->
+<!--      <div class="dropdown-menu" aria-labelledby="navbarDropdown">-->
+<!--        <a *ngIf="showMenuDecompte" class="dropdown-item"-->
+<!--           routerLink="/courtier-decompte">{{'shared.menu.refunds' | translate}}</a>-->
+<!--        <a *ngIf="showMenuSimulateur" class="dropdown-item"-->
+<!--           routerLink="/simulateur">{{'shared.menu.simulator' | translate}}</a>-->
+<!--      </div>-->
+
+<!--    </li>-->
+<!--    <li *ngIf="showMenuSuivi" [routerLinkActive]="['active']" class="nav-item dropdown">-->
+<!--      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownSuivi" role="button"-->
+<!--         data-toggle="dropdown"-->
+<!--         aria-haspopup="true" aria-expanded="false">-->
+<!--        {{'shared.menu.suivi' | translate}}-->
+<!--      </a>-->
+<!--      <div class="dropdown-menu" aria-labelledby="navbarDropdownSuivi">-->
+<!--        <a *ngIf="showMenuPaiements" class="dropdown-item"-->
+<!--           routerLink="/tiers-payant/paiements">{{'shared.menu.paiement' | translate}}</a>-->
+<!--        <a *ngIf="showMenuPriseEnCharge" class="dropdown-item"-->
+<!--           routerLink="/tiers-payant/prise-en-charge">{{'shared.menu.priseEnCahrge' | translate}}</a>-->
+<!--      </div>-->
+<!--    </li>-->
+<!--    <li *ngIf="showMenuSaisiePriseEnCharge" [routerLinkActive]="['active']" class="nav-item">-->
+<!--      <a class="nav-link"-->
+<!--         routerLink="/tiers-payant/saisie-prise-en-charge">{{'shared.menu.saisiePriseEnCharge' | translate}}</a>-->
+<!--    </li>-->
+
+<!--    <li *ngIf="showMenuService" [routerLinkActive]="['active']" class="nav-item dropdown">-->
+<!--      <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownService" role="button"-->
+<!--         data-toggle="dropdown"-->
+<!--         aria-haspopup="true" aria-expanded="false">-->
+<!--        {{'shared.menu.services' | translate}}-->
+<!--      </a>-->
+<!--      <span *ngIf="newDemandesNumber > 0"-->
+<!--            class="demande-number badge badge-pill badge-success notif-badge">{{newDemandesNumber}}</span>-->
+<!--      <div class="dropdown-menu" aria-labelledby="navbarDropdownService">-->
+<!--        <a *ngIf="showMenuDemande" class="dropdown-item" routerLink="/demande">{{'shared.menu.requests'-->
+<!--            | translate}} </a>-->
+<!--        <a *ngIf="showMenuDocument" class="dropdown-item"-->
+<!--           routerLink="/document">{{'shared.menu.documents'-->
+<!--            | translate}}</a>-->
+<!--        <a *ngIf="showMenuInformation" class="dropdown-item"-->
+<!--           routerLink="/information">{{'shared.menu.information'-->
+<!--            | translate}}</a>-->
+<!--      </div>-->
+<!--    </li>-->
+<!--    <li [routerLinkActive]="['active']" class="nav-item" *ngIf='showMenuHomeCommercial'>-->
+<!--      <a class="nav-link pull-left" routerLink="/oav/home">{{'shared.menu.home' | translate}}</a>-->
+<!--    </li>-->
+<!--    <li [routerLinkActive]="['active']" class="nav-item" *ngIf='showMenuProspectCommercial'>-->
+<!--      <a class="nav-link pull-left" routerLink="/oav/prospects">{{'shared.menu.prospect' | translate}}</a>-->
+<!--    </li>-->
+<!--  </ul>-->
+<!--  <ul *ngIf='showMenuDevis' class="navbar-nav ml-auto">-->
+<!--    <li [routerLinkActive]="['active']" class="nav-item">-->
+<!--      <a class="nav-link pull-left" routerLink="/oav/devis">{{'shared.menu.devis' | translate}}</a>-->
+<!--    </li>-->
+<!--  </ul>-->
+<!--  <ul *ngIf='showMenuAdministrationAcceuil' class="navbar-nav ml-auto">-->
+<!--    <li [routerLinkActive]="['active']" class="nav-item">-->
+<!--      <a class="nav-link pull-left" routerLink="/administration">{{'shared.menu.home' | translate}}</a>-->
+<!--    </li>-->
+<!--  </ul>-->
+<!--  <div class="user-profile-menu_wrapper">-->
+<!--    <div class="dropdown">-->
+<!--      <a class="dropdown-toggle user-name" href="#" id="userProfileMenu" role="button"-->
+<!--         data-toggle="dropdown"-->
+<!--         aria-haspopup="true" aria-expanded="false">-->
+<!--        <div class="user-image">-->
+<!--          <em class="fas fa-user-circle fa-2x"></em>-->
+<!--        </div>-->
+<!--        {{userFullName}}-->
+<!--      </a>-->
+<!--      <div class="dropdown-menu" aria-labelledby="userProfileMenu">-->
+<!--        <a *ngIf="showMenuProfil" class="dropdown-item" routerLink="/profil">{{'shared.menu.profile' |-->
+<!--            translate}}</a>-->
+<!--        <a class="dropdown-item" routerLink="/information/faq">{{'shared.menu.faq' |-->
+<!--            translate}}</a>-->
+<!--        <a class="dropdown-item" routerLink (click)="logout()">{{'shared.menu.logOut' | translate}}</a>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</nav>-->

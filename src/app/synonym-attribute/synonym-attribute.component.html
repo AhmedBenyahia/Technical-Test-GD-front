@@ -1,0 +1,36 @@
+<div class="container">
+  <div class="m-3">
+    <h1 class="title m-3" >Typage des Attributs</h1>
+  </div>
+  <mat-tab-group class="mt-1">
+    <mat-tab label=" Tous les attributs"> Tous les attributs</mat-tab>
+    <mat-tab label=" Attributs connus"> Attributs connus</mat-tab>
+    <mat-tab label=" Attributs inconnus"> Attributs inconnus</mat-tab>
+    <mat-tab label=" Synonume d'attributs">
+      <div class="tab-body">
+        <mat-icon class="ml-3 mt-3" mat-list-icon (click)="addSynonyme()">library_add</mat-icon> Ajouter un synonyme
+        <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+          <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+            <button mat-icon-button disabled></button>
+                  <mat-icon mat-list-icon>folder</mat-icon>
+                    {{node.code}}
+                  <mat-icon mat-list-icon (click)="editSynonyme(node)">edit</mat-icon>
+                  <mat-icon mat-list-icon (click)="delete(node)">delete</mat-icon>
+
+          </mat-tree-node>
+          <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+            <button mat-icon-button matTreeNodeToggle
+                    [attr.aria-label]="'toggle ' + node.code">
+              <mat-icon class="mat-icon-rtl-mirror">
+                {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+              </mat-icon>
+            </button>
+            <mat-icon mat-list-icon>folder</mat-icon> {{node.code}}
+          </mat-tree-node>
+        </mat-tree>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+
+
